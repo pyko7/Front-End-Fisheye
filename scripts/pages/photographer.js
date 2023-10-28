@@ -1,11 +1,5 @@
 //DOM Elements
-const container = document.querySelector(".photograph-header");
-const photographerInformations = document.querySelector(
-  ".photographer-informations"
-);
-const photographerProfilePictureContainer = document.querySelector(
-  ".photographer-profile-picture"
-);
+const photographersSection = document.querySelector(".photograph-header");
 const contactButton = document.querySelector(".contact_button");
 const main = document.querySelector("#main");
 
@@ -15,7 +9,7 @@ const photographerId = param ? parseInt(param) : null;
 
 /**
  * fetch photographers data
- * @returns {Object}
+ * @returns {Promise<Object>}
  */
 async function getPhotographers() {
   const url = "../../data/photographers.json";
@@ -26,15 +20,34 @@ async function getPhotographers() {
 }
 
 /**
+ *
+ * @param {number} id
+ * @returns {Promise<Object>}
+ */
+async function getPhotographersById(id) {
+  const { photographers } = await getPhotographers();
+  const [photographer] = photographers.filter((el) => el.id === id);
+  return photographer;
+}
+
+/**
+ *
+ * @param {number} id
+ * @returns {Promise<Array>}
+ */
+async function getMediasByPhotographer(id) {
+  const { media } = await getPhotographers();
+  return media.filter((el) => el.photographerId === id);
+}
+
+/**
  * calculate the number of likes of a photographer
- * @returns {Array}
+ * @param {number} id
+ * @returns {Promise<Array>}
  */
 async function calculateLikes(id) {
-  const { media } = await getPhotographers();
-  const mediaByPhotographerId = media.filter((el) => el.photographerId === id);
-  return mediaByPhotographerId
-    .map((el) => el.price)
-    .reduce((prev, curr) => prev + curr, 0);
+  const medias = await getMediasByPhotographer(id);
+  return medias.map((el) => el.price).reduce((prev, curr) => prev + curr, 0);
 }
 
 /**
@@ -70,7 +83,6 @@ function createCardElement() {
 /**
  * create photographer's card
  * @param {Object} data
- * @returns
  */
 function photographerTemplate(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
@@ -111,14 +123,17 @@ function photographerTemplate(data) {
     photographerMoreInformations.appendChild(h3);
     photographerMoreInformations.appendChild(tagline);
     photographerProfilePictureContainer.appendChild(img);
-    container.appendChild(photographerInformations);
-    container.appendChild(photographerProfilePictureContainer);
-    container.insertBefore(contactButton, photographerProfilePictureContainer);
+    photographersSection.appendChild(photographerInformations);
+    photographersSection.appendChild(photographerProfilePictureContainer);
+    photographersSection.insertBefore(
+      contactButton,
+      photographerProfilePictureContainer
+    );
     priceAndLikesContainer.appendChild(likes);
     priceAndLikesContainer.appendChild(price);
     main.appendChild(priceAndLikesContainer);
 
-    return card;
+    return;
   }
   return {
     name,
@@ -132,15 +147,33 @@ function photographerTemplate(data) {
     getUserCardDOM,
   };
 }
+/**
+ *
+ * @param {HTMLDivElement} container
+ * @param {number} id
+ * @returns {Promise<Array>}
+ */
+async function getMediasCard(photographer) {
+  const medias = await getMediasByPhotographer(photographer.id);
+  return medias.map((media) => {
+    const newMedia = new MediaFactory(media, photographer);
+    return newMedia.createCard();
+  });
+}
 
 async function displayDataByPhotographer(id) {
-  const { photographers } = await getPhotographers();
-  const photographersSection = document.querySelector(".photograph-header");
-
-  const [photographer] = photographers.filter((el) => el.id === id);
+  const mediasContainer = document.createElement("div");
+  const photographer = await getPhotographersById(id);
   const photographerModel = photographerTemplate(photographer);
-  const userCardDOM = photographerModel.getUserCardDOM();
-  photographersSection.appendChild(userCardDOM);
+
+  mediasContainer.classList.add("media-container");
+
+  await photographerModel.getUserCardDOM();
+  const mediasCard = await getMediasCard(photographer);
+  main.appendChild(mediasContainer);
+  mediasCard.forEach((media) => {
+    mediasContainer.appendChild(media);
+  });
 }
 
 if (!photographerId) {

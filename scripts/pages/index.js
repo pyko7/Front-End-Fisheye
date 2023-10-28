@@ -1,6 +1,6 @@
 /**
  * fetch photographers data
- * @returns {Object}
+ * @returns {Promise<Object>}
  */
 async function getPhotographers() {
   const url = "../../data/photographers.json";
