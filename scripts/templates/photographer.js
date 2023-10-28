@@ -18,9 +18,9 @@ function createCardElement() {
 }
 
 /**
- * 
- * @param {Object} data 
- * @returns 
+ * create photographer's card
+ * @param {Object} data
+ * @returns
  */
 function photographerTemplate(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
@@ -28,6 +28,7 @@ function photographerTemplate(data) {
   const picture = `assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
+    const url = `../../photographer.html?id=${data.id}`;
     const card = document.createElement("a");
     const { img, h2, h3, tagline, price } = createCardElement();
 
@@ -40,7 +41,7 @@ function photographerTemplate(data) {
     img.style.objectFit = "cover";
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);
-    card.setAttribute('href',`/?id=${data.id}`)
+    card.setAttribute("href", url);
 
     card.appendChild(img);
     card.appendChild(h2);
