@@ -13,10 +13,11 @@
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button">Contactez-moi</button>
       </div>
     </main>
     <div id="contact_modal">
+      <div class="contact-modal-bg"></div>
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
@@ -24,16 +25,28 @@
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="firstname" >Prénom</label>
+						<input id="firstname" type="text" minlength="2"/>
+					</div>
+					<div>
+						<label for="lastname" >Nom</label>
+						<input id="lastname" type="text" minlength="2"/>
+					</div>
+					<div>
+						<label for="email" >Email</label>
+						<input id="email" type="email" minlength="2"/>
+					</div>
+					<div>
+						<label for="message" >Votre message</label>
+						<textarea id="message" rows="10" minlength="2"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <script src="/scripts/templates/class/Image.js"></script>
-    <script src="/scripts/templates/class/Video.js"></script>
     <script src="/scripts/templates/class/MediaFactory.js"></script>
+    <script src="/scripts/templates/class/Video.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
