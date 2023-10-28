@@ -148,9 +148,8 @@ function photographerTemplate(data) {
   };
 }
 /**
- *
- * @param {HTMLDivElement} container
- * @param {number} id
+ * create image or video object for each photographer's media
+ * @param {Object} photographer
  * @returns {Promise<Array>}
  */
 async function getMediasCard(photographer) {
@@ -161,6 +160,10 @@ async function getMediasCard(photographer) {
   });
 }
 
+/**
+ * display photographer's page
+ * @param {number} id
+ */
 async function displayDataByPhotographer(id) {
   const mediasContainer = document.createElement("div");
   const photographer = await getPhotographersById(id);
