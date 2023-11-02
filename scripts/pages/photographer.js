@@ -7,16 +7,19 @@ const main = document.querySelector("#main");
 const param = new URL(document.location).searchParams.get("id");
 const photographerId = param ? parseInt(param) : null;
 
+let photographersAndMedias = null;
 /**
  * fetch photographers data
  * @returns {Promise<Object>}
  */
 async function getPhotographers() {
   const url = "../../data/photographers.json";
-
-  const res = await fetch(url);
-  const data = await res.json();
-  return data;
+  if(!photographersAndMedias){
+    const res = await fetch(url);
+    const data = await res.json();
+    photographersAndMedias = data;
+  }
+  return photographersAndMedias
 }
 
 /**
