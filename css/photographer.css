@@ -7,17 +7,6 @@
   min-height: 100vh;
 }
 
-.contact-modal-bg {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #312e2e;
-  opacity: 0.75;
-}
-
 .photograph-header {
   padding: 40px;
   display: flex;
