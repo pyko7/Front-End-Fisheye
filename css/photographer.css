@@ -157,3 +157,20 @@ form textarea {
   border: none;
   border-radius: 5px;
 }
+
+.sort-container {
+  margin: 20px 100px;
+}
+
+.sort-container label {
+  font-weight: bold;
+}
+
+.sort-container select {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #901c1c;
+  border-bottom: 1px solid #fff;
+}

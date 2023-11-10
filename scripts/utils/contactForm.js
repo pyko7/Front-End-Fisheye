@@ -32,3 +32,10 @@ form.addEventListener("submit", (e) => {
   };
   console.log(formResult);
 });
+
+main.addEventListener("keydown", (e) => {
+  e.preventDefault();
+  if (modal.style.display === "block" && e.key === "Escape") {
+    closeModal();
+  }
+});

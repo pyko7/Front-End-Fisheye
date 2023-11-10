@@ -2,10 +2,13 @@
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
@@ -15,38 +18,48 @@
       <div class="photograph-header">
         <button class="contact_button">Contactez-moi</button>
       </div>
+      <div class="sort-container">
+        <span for="sort-by">Trier par:</span>
+        <select name="sort" id="sort-by">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+      </div>
+      <div id="media-container" class="media-container"></div>
     </main>
     <div id="contact_modal">
       <div class="contact-modal-bg"></div>
-			<div class="modal">
-				<header>
+      <div class="modal">
+        <header>
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
-					<div>
-						<label for="firstname" >Prénom</label>
-						<input id="firstname" type="text" minlength="2"/>
-					</div>
-					<div>
-						<label for="lastname" >Nom</label>
-						<input id="lastname" type="text" minlength="2"/>
-					</div>
-					<div>
-						<label for="email" >Email</label>
-						<input id="email" type="email" minlength="2"/>
-					</div>
-					<div>
-						<label for="message" >Votre message</label>
-						<textarea id="message" rows="10" minlength="2"></textarea>
-					</div>
+        <form>
+          <div>
+            <label for="firstname">Prénom</label>
+            <input id="firstname" type="text" minlength="2" />
+          </div>
+          <div>
+            <label for="lastname">Nom</label>
+            <input id="lastname" type="text" minlength="2" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" minlength="2" />
+          </div>
+          <div>
+            <label for="message">Votre message</label>
+            <textarea id="message" rows="10" minlength="2"></textarea>
+          </div>
           <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+        </form>
+      </div>
+    </div>
     <script src="/scripts/templates/class/Image.js"></script>
     <script src="/scripts/templates/class/MediaFactory.js"></script>
     <script src="/scripts/templates/class/Video.js"></script>
+    <script src="/scripts/templates/photographerPage.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
