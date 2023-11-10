@@ -158,19 +158,35 @@ form textarea {
   border-radius: 5px;
 }
 
-.sort-container {
-  margin: 20px 100px;
+.dropdown {
+  position: relative;
+  margin: 30px 100px;
+  margin-bottom: 0;
+  display: inline-flex;
+  gap: 5px;
 }
 
-.sort-container label {
-  font-weight: bold;
-}
-
-.sort-container select {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
+.dropdown-button {
+  width: 150px;
   background-color: #901c1c;
-  border-bottom: 1px solid #fff;
+  color: #fafafa;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dropdown-listbox {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #901c1c;
+  width: 170px;
+  border-radius: 5px;
+}
+
+.listitem {
+  width: 100%;
+  padding: 10px;
+  color: #fafafa;
+  cursor: pointer;
 }

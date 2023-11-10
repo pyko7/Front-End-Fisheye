@@ -18,13 +18,48 @@
       <div class="photograph-header">
         <button class="contact_button">Contactez-moi</button>
       </div>
-      <div class="sort-container">
-        <span for="sort-by">Trier par:</span>
-        <select name="sort" id="sort-by">
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
+      <div class="dropdown" role="listbox" aria-label="Dropdown Menu">
+        <span>Trier par:</span>
+        <div
+          class="dropdown-button"
+          tabindex="0"
+          aria-expanded="false"
+          aria-haspopup="listbox"
+        >
+          Popularité
+        </div>
+        <div
+          class="dropdown-listbox"
+          id="listbox"
+          role="listbox"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <div
+            class="listitem"
+            role="option"
+            aria-selected="false"
+            onclick="selectItem(1,'popularity')"
+          >
+            Popularité
+          </div>
+          <div
+            class="listitem"
+            role="option"
+            aria-selected="false"
+            onclick="selectItem(2,'date')"
+          >
+            Date
+          </div>
+          <div
+            class="listitem"
+            role="option"
+            aria-selected="false"
+            onclick="selectItem(3,'title')"
+          >
+            Title
+          </div>
+        </div>
       </div>
       <div id="media-container" class="media-container"></div>
     </main>

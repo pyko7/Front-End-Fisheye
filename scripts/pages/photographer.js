@@ -2,7 +2,8 @@
 const photographersSection = document.querySelector(".photograph-header");
 const contactButton = document.querySelector(".contact_button");
 const main = document.querySelector("#main");
-const sortName = document.querySelector("#sort-by");
+const selectButton = document.querySelector(".dropdown-button");
+const listbox = document.querySelector("#listbox");
 const mediaContainer = document.querySelector("#media-container");
 
 //URL params
@@ -13,6 +14,8 @@ let photographersAndMedias = null;
 let photographer = null;
 let medias = null;
 let displayedMedias = null;
+let listboxVisible = false;
+let selectedItem = null;
 
 /**
  * fetch photographers data
@@ -127,31 +130,55 @@ async function displayDataByPhotographer(id) {
 
   const photographerModel = photographerTemplate(photographer);
   await photographerModel.getUserCardDOM();
-  displayMediaByPhotographer();
-}
 
-async function displayMediaByPhotographer() {
-  if (!photographer) {
-    photographer = await getPhotographersById(id);
-  }
   if (!medias) {
     medias = await getMediasByPhotographer(id);
   }
 
-  const sortedMedia = sortMedia(sortName.value, medias);
+  displayMediaByPhotographer(medias);
+}
 
-  if (!sortName.value) {
-    displayedMedias = getMediasCard(photographer, medias);
-  } else {
-    displayedMedias = getMediasCard(photographer, sortedMedia);
+async function displayMediaByPhotographer(medias) {
+  if (!photographer) {
+    photographer = await getPhotographersById(id);
   }
+
+  displayedMedias = getMediasCard(photographer, medias);
   mediaContainer.innerHTML = ``;
   displayedMedias.forEach((media) => {
     mediaContainer.appendChild(media);
   });
 }
 
-sortName.addEventListener("change", displayMediaByPhotographer);
+function toggleListbox() {
+  listboxVisible = !listboxVisible;
+  listbox.style.display = listboxVisible ? "block" : "none";
+  listbox.parentElement
+    .querySelector(".dropdown-button")
+    .setAttribute("aria-expanded", listboxVisible.toString());
+
+  if (listboxVisible) {
+    listbox.setAttribute("aria-hidden", "false");
+    listbox.focus();
+  } else {
+    listbox.setAttribute("aria-hidden", "true");
+  }
+}
+
+function selectItem(itemNumber, itemName) {
+  if (selectedItem) {
+    selectedItem.setAttribute("aria-selected", "false");
+  }
+  selectedItem = document.querySelector(`.listitem:nth-child(${itemNumber})`);
+  selectedItem.setAttribute("aria-selected", "true");
+  document.querySelector(".dropdown-button").textContent =
+    selectedItem.textContent;
+  medias = sortMedia(itemName, medias);
+  displayMediaByPhotographer(medias);
+  toggleListbox();
+}
+
+selectButton.addEventListener("click", toggleListbox);
 
 if (!photographerId) {
   window.location.href = "/";
