@@ -24,7 +24,7 @@ let lightbox;
 let instanciatedMedia = [];
 
 /**
- * fetch photographers data
+ * @description fetch photographers data
  * @returns {Promise<Object>}
  */
 async function getPhotographers() {
@@ -38,7 +38,7 @@ async function getPhotographers() {
 }
 
 /**
- *
+ * @description get photographer by id
  * @param {number} id
  * @returns {Promise<Object>}
  */
@@ -49,7 +49,7 @@ async function getPhotographersById(id) {
 }
 
 /**
- *
+ * @description fetch media by photographer
  * @param {number} id
  * @returns {Promise<Array>}
  */
@@ -59,7 +59,7 @@ async function getMediasByPhotographer(id) {
 }
 
 /**
- * calculate the number of likes of a photographer
+ * @description calculate the number of likes of a photographer
  * @param {number} id
  * @returns {Promise<Array>}
  */
@@ -71,7 +71,7 @@ async function calculateLikes(id) {
 }
 
 /**
- * Create card elements
+ * @description Create card elements
  * @returns {Object}
  */
 function createCardElement() {
@@ -101,7 +101,7 @@ function createCardElement() {
 }
 
 /**
- * create image or video object for each photographer's media
+ * @description create image or video object for each photographer's media
  * @param {Object} photographer
  * @returns {Array}
  */
@@ -113,6 +113,12 @@ function getMediasCard(photographer, medias) {
   });
 }
 
+/**
+ * @description sort media by sorting type
+ * @param {string} type the type of sorting
+ * @param {Array} medias array of medias
+ * @returns {Array} array of sorted medias
+ */
 function sortMedia(type, medias) {
   if (type === "date") {
     return medias.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -124,7 +130,7 @@ function sortMedia(type, medias) {
 }
 
 /**
- * display photographer's page
+ * @description display photographer's page
  * @param {number} id
  */
 async function displayDataByPhotographer(id) {
@@ -145,6 +151,10 @@ async function displayDataByPhotographer(id) {
   displayMediaByPhotographer(medias);
 }
 
+/**
+ * @description display each photographer's media
+ * @param {Array} medias array of medias
+ */
 async function displayMediaByPhotographer(medias) {
   lightbox = new Lightbox(instanciatedMedia);
 
@@ -159,6 +169,9 @@ async function displayMediaByPhotographer(medias) {
   });
 }
 
+/**
+ * @description display/hide sorting menu
+ */
 function toggleListbox() {
   listboxVisible = !listboxVisible;
   listbox.style.display = listboxVisible ? "block" : "none";
@@ -174,6 +187,11 @@ function toggleListbox() {
   }
 }
 
+/**
+ * @description Select a type of sorting
+ * @param {number} itemNumber item's index
+ * @param {string} itemName item's name
+ */
 function selectItem(itemNumber, itemName) {
   if (selectedItem) {
     selectedItem.setAttribute("aria-selected", "false");

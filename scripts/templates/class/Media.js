@@ -1,4 +1,12 @@
+/**
+ * @description class representing a media
+ */
 class Media {
+  /**
+   * @description create a media
+   * @param {Object} data data of media
+   * @param {Object} photographer photographer's media
+   */
   constructor(data, photographer) {
     this.id = data.id;
     this.photographerId = data.photographerId;
@@ -11,6 +19,11 @@ class Media {
     this.liked = false;
     this.container = null;
   }
+  /**
+   * @description create the base of a media card
+   * @param {HTMLElement} specificDom image or video HTML tag
+   * @returns
+   */
   createBaseCard(specificDom) {
     const container = document.createElement("div");
     const text = document.createElement("div");
@@ -40,6 +53,9 @@ class Media {
     return container;
   }
 
+  /**
+   * @description handle like value
+   */
   createLike() {
     const totalLikesContainer = document.getElementById("total-likes-number");
     let totalLikes = parseInt(totalLikesContainer.textContent);

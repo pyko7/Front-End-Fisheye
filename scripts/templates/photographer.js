@@ -20,7 +20,7 @@ function createCardElement() {
 /**
  * create photographer's card
  * @param {Object} data
- * @returns
+ * @returns {HTMLElement}
  */
 function photographerTemplate(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
