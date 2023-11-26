@@ -5,6 +5,9 @@ const main = document.querySelector("#main");
 const selectButton = document.querySelector(".dropdown-button");
 const listbox = document.querySelector("#listbox");
 const mediaContainer = document.querySelector("#media-container");
+const closeLightboxBtn = document.querySelector("#close-lightbox-button");
+const nextMediaButton = document.querySelector("#nav-to-right-lightbox");
+const previousMediaButton = document.querySelector("#nav-to-left-lightbox");
 
 //URL params
 const param = new URL(document.location).searchParams.get("id");
@@ -16,6 +19,9 @@ let medias = null;
 let displayedMedias = null;
 let listboxVisible = false;
 let selectedItem = null;
+let likedMedias = [];
+let lightbox;
+let instanciatedMedia = [];
 
 /**
  * fetch photographers data
@@ -79,7 +85,7 @@ function createCardElement() {
   const h3 = document.createElement("h3");
   const tagline = document.createElement("p");
   const price = document.createElement("p");
-  const likes = document.createElement("p");
+  const totalLikes = document.createElement("span");
   return {
     priceAndLikesContainer,
     photographerInformations,
@@ -90,7 +96,7 @@ function createCardElement() {
     h3,
     tagline,
     price,
-    likes,
+    totalLikes,
   };
 }
 
@@ -102,6 +108,7 @@ function createCardElement() {
 function getMediasCard(photographer, medias) {
   return medias.map((media) => {
     const newMedia = new MediaFactory(media, photographer);
+    instanciatedMedia.push(newMedia);
     return newMedia.createCard();
   });
 }
@@ -112,7 +119,7 @@ function sortMedia(type, medias) {
   } else if (type === "title") {
     return medias.sort((a, b) => a.title.localeCompare(b.title));
   } else {
-    return medias.sort((a, b) => (a.likes > b.likes ? -1 : 1));
+    return medias.sort((a, b) => (a.totalLikes > b.totalLikes ? -1 : 1));
   }
 }
 
@@ -139,6 +146,8 @@ async function displayDataByPhotographer(id) {
 }
 
 async function displayMediaByPhotographer(medias) {
+  lightbox = new Lightbox(instanciatedMedia);
+
   if (!photographer) {
     photographer = await getPhotographersById(id);
   }
@@ -179,6 +188,24 @@ function selectItem(itemNumber, itemName) {
 }
 
 selectButton.addEventListener("click", toggleListbox);
+nextMediaButton.addEventListener("click", () => lightbox.setNextMedia());
+previousMediaButton.addEventListener("click", () =>
+  lightbox.setPreviousMedia()
+);
+closeLightboxBtn.addEventListener("click", () => {
+  Lightbox.closeLightbox();
+});
+window.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") {
+    lightbox.setNextMedia();
+  } else if (e.key === "ArrowLeft") {
+    lightbox.setPreviousMedia();
+  } else if (e.key === "Escape") {
+    Lightbox.closeLightbox();
+  } else {
+    return;
+  }
+});
 
 if (!photographerId) {
   window.location.href = "/";

@@ -182,6 +182,7 @@ form textarea {
   background-color: #901c1c;
   width: 170px;
   border-radius: 5px;
+  border-bottom: 1px solid #fafafa;
 }
 
 .listitem {
@@ -189,4 +190,75 @@ form textarea {
   padding: 10px;
   color: #fafafa;
   cursor: pointer;
+}
+
+#lightbox-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+}
+
+#lightbox {
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox-media {
+  width: 80%;
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lightbox-media img {
+  width: 100%;
+
+  object-fit: cover;
+}
+.lightbox-media p {
+  color: #901c1c;
+  font-size: 26px;
+}
+.lightbox-media button {
+  display: none;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #901c1c;
+  font-size: 26px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.lightboxNavBtn {
+  position: absolute;
+  top: 50%;
+  transform: translate(50%, 50%);
+  color: #901c1c;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightboxNavBtn i {
+  font-size: 38px;
+}
+
+#nav-to-left-lightbox {
+  left: 100px;
+}
+#nav-to-right-lightbox {
+  right: 100px;
 }

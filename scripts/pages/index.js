@@ -12,7 +12,7 @@ async function getPhotographers() {
 
 /**
  * display photographers cards
- * @param {Object} photographers 
+ * @param {Object} photographers
  */
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");

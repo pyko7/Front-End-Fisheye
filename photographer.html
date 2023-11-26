@@ -8,11 +8,15 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/618e307eee.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" tabindex="0" />
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -63,6 +67,30 @@
       </div>
       <div id="media-container" class="media-container"></div>
     </main>
+
+    <div id="lightbox-container">
+      <div id="lightbox"></div>
+      <button aria-label="fermer" id="close-lightbox-button" class="closeBtn">
+        <i class="fa-solid fa-x"></i>
+      </button>
+      <button
+        role="navigation"
+        aria-label="photo précédente"
+        id="nav-to-left-lightbox"
+        class="lightboxNavBtn"
+      >
+        <i aria-hidden="true" class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button
+        role="navigation"
+        aria-label="photo suivante"
+        id="nav-to-right-lightbox"
+        class="lightboxNavBtn"
+      >
+        <i aria-hidden="true" class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
     <div id="contact_modal">
       <div class="contact-modal-bg"></div>
       <div class="modal">
@@ -91,9 +119,11 @@
         </form>
       </div>
     </div>
+    <script src="/scripts/templates/class/Lightbox.js"></script>
+    <script src="/scripts/templates/class/Media.js"></script>
     <script src="/scripts/templates/class/Image.js"></script>
-    <script src="/scripts/templates/class/MediaFactory.js"></script>
     <script src="/scripts/templates/class/Video.js"></script>
+    <script src="/scripts/templates/class/MediaFactory.js"></script>
     <script src="/scripts/templates/photographerPage.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
