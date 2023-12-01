@@ -157,36 +157,71 @@ form textarea {
 
 .dropdown {
   position: relative;
-  margin: 30px 100px;
-  margin-bottom: 0;
-  display: inline-flex;
-  gap: 5px;
+  display: flex;
+  gap: 10px;
+  margin: 0 100px;
+  margin-top: 25px;
 }
 
-.dropdown-button {
-  width: 150px;
+.dropdown-label {
+  font-weight: bold;
+}
+
+.dropdown-trigger {
+  width: 100%;
+  font-size: 16px;
   background-color: #901c1c;
-  color: #fafafa;
-  padding: 10px;
-  cursor: pointer;
+  color: #f9f9f9;
+  border: none;
+  padding: 10px 0;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.dropdown-listbox {
+.dropdown-menu-container {
+  position: relative;
+  width: 100%;
+  max-width: 150px;
+}
+.dropdown-menu {
+  width: 100%;
   display: none;
   position: absolute;
-  right: 0;
+  top: 0px;
+  left: 0;
+  margin: 0;
+  padding: 0;
   background-color: #901c1c;
-  width: 170px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  list-style: none;
   border-radius: 5px;
-  border-bottom: 1px solid #fafafa;
 }
 
-.listitem {
+.dropdown-menu li {
   width: 100%;
-  padding: 10px;
-  color: #fafafa;
-  cursor: pointer;
+  margin: 0;
+  text-align: center;
+  border-radius: 0px;
+  border-radius: 0px;
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.dropdown-menu li:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.dropdown-menu li:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: none;
+}
+
+.dropdown-menu li:hover {
+  background-color: #d3573c;
+}
+
+.dropdown.active .dropdown-menu {
+  display: block;
 }
 
 #lightbox-container {

@@ -29,49 +29,31 @@
       <div class="photograph-header">
         <button class="contact_button">Contactez-moi</button>
       </div>
-      <div class="dropdown" role="listbox" aria-label="Dropdown Menu">
-        <span>Trier par:</span>
-        <div
-          class="dropdown-button"
-          tabindex="0"
-          aria-expanded="false"
-          aria-haspopup="listbox"
-        >
-          Popularité
-        </div>
-        <div
-          class="dropdown-listbox"
-          id="listbox"
-          role="listbox"
-          tabindex="-1"
-          aria-hidden="true"
-        >
-          <div
-            class="listitem"
-            role="option"
-            aria-selected="false"
-            onclick="selectItem(1,'popularity')"
+
+      <div class="dropdown">
+        <div class="dropdown-label">Trier par:</div>
+        <div class="dropdown-menu-container">
+          <button
+            class="dropdown-trigger"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            tabindex="0"
           >
             Popularité
-          </div>
-          <div
-            class="listitem"
-            role="option"
-            aria-selected="false"
-            onclick="selectItem(2,'date')"
-          >
-            Date
-          </div>
-          <div
-            class="listitem"
-            role="option"
-            aria-selected="false"
-            onclick="selectItem(3,'title')"
-          >
-            Title
-          </div>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-hidden="true">
+            <li class="dropdown-trigger" role="menuitem" tabindex="-1">
+              Popularité
+            </li>
+            <li class="dropdown-trigger" role="menuitem" tabindex="-1">Date</li>
+            <li class="dropdown-trigger" role="menuitem" tabindex="-1">
+              Titre
+            </li>
+          </ul>
         </div>
       </div>
+
       <div id="media-container" class="media-container"></div>
     </main>
 

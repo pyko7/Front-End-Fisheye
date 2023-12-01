@@ -2,12 +2,14 @@
 const photographersSection = document.querySelector(".photograph-header");
 const contactButton = document.querySelector(".contact_button");
 const main = document.querySelector("#main");
-const selectButton = document.querySelector(".dropdown-button");
 const listbox = document.querySelector("#listbox");
 const mediaContainer = document.querySelector("#media-container");
 const closeLightboxBtn = document.querySelector("#close-lightbox-button");
 const nextMediaButton = document.querySelector("#nav-to-right-lightbox");
 const previousMediaButton = document.querySelector("#nav-to-left-lightbox");
+const dropdown = document.querySelector(".dropdown");
+const dropdownTrigger = document.querySelector(".dropdown-trigger");
+const dropdownMenu = document.querySelector(".dropdown-menu");
 
 //URL params
 const param = new URL(document.location).searchParams.get("id");
@@ -122,10 +124,10 @@ function getMediasCard(photographer, medias) {
 function sortMedia(type, medias) {
   if (type === "date") {
     return medias.sort((a, b) => new Date(b.date) - new Date(a.date));
-  } else if (type === "title") {
+  } else if (type === "titre") {
     return medias.sort((a, b) => a.title.localeCompare(b.title));
   } else {
-    return medias.sort((a, b) => (a.totalLikes > b.totalLikes ? -1 : 1));
+    return medias.sort((a, b) => b.likes - a.likes);
   }
 }
 
@@ -169,44 +171,85 @@ async function displayMediaByPhotographer(medias) {
   });
 }
 
-/**
- * @description display/hide sorting menu
- */
-function toggleListbox() {
-  listboxVisible = !listboxVisible;
-  listbox.style.display = listboxVisible ? "block" : "none";
-  listbox.parentElement
-    .querySelector(".dropdown-button")
-    .setAttribute("aria-expanded", listboxVisible.toString());
+dropdownTrigger.addEventListener("click", () => {
+  toggleDropdown();
+});
 
-  if (listboxVisible) {
-    listbox.setAttribute("aria-hidden", "false");
-    listbox.setAttribute("tabindex", "0");
-    listbox.focus();
-  } else {
-    listbox.setAttribute("aria-hidden", "true");
+dropdownTrigger.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    toggleDropdown();
   }
+});
+
+dropdownMenu.addEventListener("blur", () => {
+  closeDropdown();
+});
+
+dropdownMenu.addEventListener("keydown", (e) => {
+  e.preventDefault();
+  if (e.key === "Escape") {
+    dropdownTrigger.focus();
+    closeDropdown();
+  } else if (e.key === "ArrowUp") {
+    navigateOptions(-1);
+  } else if (e.key === "ArrowDown") {
+    navigateOptions(1);
+  } else if (e.key === "Enter") {
+    selectItem(e.target.textContent.toLowerCase().trim());
+  }
+});
+
+dropdownMenu.addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    selectItem(e.target.textContent.toLowerCase().trim());
+  }
+});
+
+function toggleDropdown() {
+  dropdown.classList.toggle("active");
+  const isOpen = dropdown.classList.contains("active");
+  dropdownTrigger.setAttribute("aria-expanded", isOpen);
+  dropdownMenu.setAttribute("aria-hidden", !isOpen);
+
+  if (isOpen) {
+    dropdownMenu.querySelector("li").focus();
+  }
+}
+
+function closeDropdown() {
+  dropdown.classList.remove("active");
+  dropdownTrigger.setAttribute("aria-expanded", false);
+  dropdownMenu.setAttribute("aria-hidden", true);
+}
+
+function navigateOptions(direction) {
+  const options = Array.from(dropdownMenu.querySelectorAll("li"));
+  const currentIndex = options.findIndex(
+    (option) => option === document.activeElement
+  );
+  const newIndex = (currentIndex + direction + options.length) % options.length;
+  options[newIndex].focus();
 }
 
 /**
  * @description Select a type of sorting
- * @param {number} itemNumber item's index
  * @param {string} itemName item's name
  */
-function selectItem(itemNumber, itemName) {
-  if (selectedItem) {
-    selectedItem.setAttribute("aria-selected", "false");
+function selectItem(itemName) {
+  const selectedOption = dropdownMenu.querySelector("li:focus");
+  const dropdownTrigger = document.querySelector(".dropdown-trigger");
+
+  if (selectedOption) {
+    const optionText = selectedOption.textContent;
+    dropdownTrigger.textContent = optionText;
+    medias = sortMedia(itemName, medias);
+    displayMediaByPhotographer(medias);
+    closeDropdown();
+    dropdownTrigger.focus();
   }
-  selectedItem = document.querySelector(`.listitem:nth-child(${itemNumber})`);
-  selectedItem.setAttribute("aria-selected", "true");
-  document.querySelector(".dropdown-button").textContent =
-    selectedItem.textContent;
-  medias = sortMedia(itemName, medias);
-  displayMediaByPhotographer(medias);
-  toggleListbox();
 }
 
-selectButton.addEventListener("click", toggleListbox);
 nextMediaButton.addEventListener("click", () => lightbox.setNextMedia());
 previousMediaButton.addEventListener("click", () =>
   lightbox.setPreviousMedia()
