@@ -171,8 +171,11 @@ async function displayMediaByPhotographer(medias) {
   });
 }
 
-dropdownTrigger.addEventListener("click", () => {
+dropdownTrigger.addEventListener("click", (e) => {
   toggleDropdown();
+  if (e.key === "Escape") {
+    closeDropdown();
+  }
 });
 
 dropdownTrigger.addEventListener("keydown", (e) => {
