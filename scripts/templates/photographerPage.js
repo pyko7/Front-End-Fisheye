@@ -26,10 +26,11 @@ function photographerTemplate(data) {
     h3.textContent = `${data.city}, ${data.country}`;
     tagline.textContent = data.tagline;
     price.textContent = `${data.price}€/jour`;
-    totalLikes.innerHTML = `<span id="total-likes-number">${likesNumber}</span> ♥`;
+    totalLikes.innerHTML = `<span id="total-likes-number">${likesNumber}</span> <i aria-hidden="true" class="fa-solid fa-heart"></i>`;
 
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);
+    photographerProfilePictureContainer.setAttribute("tabindex", 0);
 
     photographerProfilePictureContainer.classList.add(
       "photographer-profile-picture-container"

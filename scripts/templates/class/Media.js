@@ -31,9 +31,10 @@ class Media {
     const likesNumber = document.createElement("button");
 
     container.setAttribute("tabindex", 0);
+    likesNumber.setAttribute("aria-label", "bouton de like");
     likesNumber.addEventListener("click", () => {
       this.createLike();
-      likesNumber.innerHTML = `${this.likes} <i class="fa-solid fa-heart"></i>`;
+      likesNumber.innerHTML = `${this.likes} <i aria-hidden="true" class="fa-solid fa-heart"></i>`;
     });
     container.addEventListener("click", () => {
       Lightbox.openLightbox(this.title);
@@ -41,7 +42,7 @@ class Media {
     text.classList.add("media-text");
     likesNumber.classList.add("like-btn");
     title.textContent = this.title;
-    likesNumber.innerHTML = `${this.likes} <i class="fa-solid fa-heart"></i>`;
+    likesNumber.innerHTML = `${this.likes} <i aria-hidden="true" class="fa-solid fa-heart"></i>`;
 
     text.appendChild(title);
     text.appendChild(likesNumber);

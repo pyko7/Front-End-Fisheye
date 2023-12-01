@@ -181,6 +181,7 @@ function toggleListbox() {
 
   if (listboxVisible) {
     listbox.setAttribute("aria-hidden", "false");
+    listbox.setAttribute("tabindex", "0");
     listbox.focus();
   } else {
     listbox.setAttribute("aria-hidden", "true");
