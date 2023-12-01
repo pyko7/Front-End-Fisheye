@@ -1,26 +1,39 @@
-const modal = document.getElementById("contact_modal");
+const modal = document.querySelector("dialog");
 const form = document.querySelector("form");
 const firstname = document.querySelector("#firstname");
 const lastname = document.querySelector("#lastname");
 const email = document.querySelector("#email");
 const textarea = document.querySelector("textarea");
+const closeModalBtn = document.querySelector("#closeModalBtn");
 
-function displayModal() {
-  modal.style.display = "block";
-  modal.style.position = "absolute";
+function trapFocus(event) {
+  const focusableElements = modal.querySelectorAll(
+    'input, textarea, [tabindex]:not([tabindex="-1"]),button'
+  );
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (event.key === "Tab") {
+    if (event.shiftKey) {
+      if (document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }
 }
 
-function closeModal() {
-  modal.style.display = "none";
-  modal.style.position = "static";
-}
+modal.addEventListener("keydown", trapFocus);
 
 contactButton.addEventListener("click", () => {
-  if (modal.style.display === "block") {
-    closeModal();
-  } else {
-    displayModal();
-  }
+  modal.showModal();
+  firstname.focus();
 });
 
 form.addEventListener("submit", (e) => {
@@ -31,11 +44,12 @@ form.addEventListener("submit", (e) => {
     email: email.value,
   };
   console.log(formResult);
+  modal.close();
 });
 
-main.addEventListener("keydown", (e) => {
-  if (modal.style.display === "block" && e.key === "Escape") {
+modal.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
     e.preventDefault();
-    closeModal();
+    modal.close();
   }
 });

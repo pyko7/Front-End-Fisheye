@@ -1,10 +1,7 @@
-#contact_modal {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
+dialog {
   width: 100%;
   min-height: 100vh;
+  border: none;
 }
 
 .photograph-header {

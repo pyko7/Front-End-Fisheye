@@ -16,12 +16,14 @@
   </head>
   <body>
     <header>
-      <img
-        src="assets/images/logo.png"
-        class="logo"
-        tabindex="0"
-        alt="fisheye logo"
-      />
+      <a href="/index.html">
+        <img
+          src="assets/images/logo.png"
+          class="logo"
+          tabindex="0"
+          alt="fisheye logo"
+        />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -96,16 +98,19 @@
       </button>
     </div>
 
-    <div id="contact_modal">
+    <dialog>
       <div class="contact-modal-bg"></div>
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img
-            src="assets/icons/close.svg"
-            onclick="closeModal()"
-            alt="close modal"
-          />
+          <span tabindex="0">
+            <img
+              src="assets/icons/close.svg"
+              onclick="modal.close()"
+              alt="close modal"
+              id="closeModalBtn"
+            />
+          </span>
         </header>
         <form>
           <div>
@@ -127,7 +132,7 @@
           <button class="contact_button">Envoyer</button>
         </form>
       </div>
-    </div>
+    </dialog>
     <script src="/scripts/templates/class/Lightbox.js"></script>
     <script src="/scripts/templates/class/Media.js"></script>
     <script src="/scripts/templates/class/Image.js"></script>
