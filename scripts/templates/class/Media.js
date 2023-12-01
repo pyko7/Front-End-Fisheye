@@ -30,14 +30,26 @@ class Media {
     const title = document.createElement("p");
     const likesNumber = document.createElement("button");
 
-    container.setAttribute("tabindex", 0);
+    specificDom.setAttribute("tabindex", 0);
     likesNumber.setAttribute("aria-label", "bouton de like");
-    likesNumber.addEventListener("click", () => {
+    likesNumber.addEventListener("click", (e) => {
+      e.preventDefault();
       this.createLike();
       likesNumber.innerHTML = `${this.likes} <i aria-hidden="true" class="fa-solid fa-heart"></i>`;
     });
-    container.addEventListener("click", () => {
+    container.addEventListener("click", (e) => {
+      if (e.target.tagName === "I" || e.target.tagName === "BUTTON") {
+        return;
+      }
       Lightbox.openLightbox(this.title);
+    });
+    container.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "I" || e.target.tagName === "BUTTON") {
+        return;
+      }
+      if (e.key === "Enter") {
+        Lightbox.openLightbox(this.title);
+      }
     });
     text.classList.add("media-text");
     likesNumber.classList.add("like-btn");

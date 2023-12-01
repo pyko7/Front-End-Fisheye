@@ -263,6 +263,7 @@ window.addEventListener("keydown", (e) => {
   } else if (e.key === "ArrowLeft") {
     lightbox.setPreviousMedia();
   } else if (e.key === "Escape") {
+    e.preventDefault();
     Lightbox.closeLightbox();
   } else {
     return;
