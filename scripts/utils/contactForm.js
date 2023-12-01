@@ -48,7 +48,10 @@ form.addEventListener("submit", (e) => {
 });
 
 modal.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
+  if (
+    e.key === "Escape" ||
+    (e.target.id === "closeModalBtn" && e.key === "Enter")
+  ) {
     e.preventDefault();
     modal.close();
   }

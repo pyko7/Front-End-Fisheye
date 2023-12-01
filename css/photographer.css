@@ -122,6 +122,11 @@ dialog {
   text-align: center;
 }
 
+#closeModalBtn {
+  background-color: transparent;
+  border: none;
+}
+
 form {
   display: flex;
   width: 100%;
