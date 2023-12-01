@@ -30,7 +30,6 @@ function photographerTemplate(data) {
 
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);
-    photographerProfilePictureContainer.setAttribute("tabindex", 0);
 
     photographerProfilePictureContainer.classList.add(
       "photographer-profile-picture-container"

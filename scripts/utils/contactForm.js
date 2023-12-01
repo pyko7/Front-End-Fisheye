@@ -34,8 +34,8 @@ form.addEventListener("submit", (e) => {
 });
 
 main.addEventListener("keydown", (e) => {
-  e.preventDefault();
   if (modal.style.display === "block" && e.key === "Escape") {
+    e.preventDefault();
     closeModal();
   }
 });
