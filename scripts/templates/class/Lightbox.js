@@ -26,9 +26,11 @@ class Lightbox {
     const cardMedia = currentMedia.createCard();
     const lightbox = document.querySelector("#lightbox");
     document.getElementById("lightbox-container").style.display = "flex";
-    console.log(cardMedia);
     lightbox.appendChild(cardMedia);
     cardMedia.setAttribute("class", "lightbox-media");
+    if (cardMedia.firstChild.tagName === "VIDEO") {
+      cardMedia.firstChild.setAttribute("autoplay", true);
+    }
   }
 
   /**
