@@ -5,6 +5,7 @@ const lastname = document.querySelector("#lastname");
 const email = document.querySelector("#email");
 const textarea = document.querySelector("textarea");
 const closeModalBtn = document.querySelector("#closeModalBtn");
+const photographerName = document.querySelector("#photographerName");
 
 function trapFocus(event) {
   const focusableElements = modal.querySelectorAll(
@@ -33,6 +34,7 @@ modal.addEventListener("keydown", trapFocus);
 
 contactButton.addEventListener("click", () => {
   modal.showModal();
+  photographerName.innerHTML = photographer.name;
   firstname.focus();
 });
 
@@ -44,6 +46,10 @@ form.addEventListener("submit", (e) => {
     email: email.value,
   };
   console.log(formResult);
+  modal.close();
+});
+
+closeModalBtn.addEventListener("click", () => {
   modal.close();
 });
 

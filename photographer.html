@@ -76,33 +76,41 @@
     </div>
 
     <dialog>
-      <div class="contact-modal-bg"></div>
-      <div class="modal">
-        <header>
-          <h2>Contactez-moi</h2>
-          <button type="button" id="closeModalBtn" aria-label="fermer la modal">
-            <img src="assets/icons/close.svg" alt="" />
-          </button>
-        </header>
-        <form>
-          <div>
-            <label for="firstname">Prénom</label>
-            <input id="firstname" type="text" minlength="2" />
-          </div>
-          <div>
-            <label for="lastname">Nom</label>
-            <input id="lastname" type="text" minlength="2" />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" type="email" minlength="2" />
-          </div>
-          <div>
-            <label for="message">Votre message</label>
-            <textarea id="message" rows="10" minlength="2"></textarea>
-          </div>
-          <button class="contact_button">Envoyer</button>
-        </form>
+      <div class="modal-container">
+        <div class="modal">
+          <header>
+            <div class="header-text">
+              <h2>Contactez-moi</h2>
+              <h2 id="photographerName"></h2>
+            </div>
+            <button
+              type="button"
+              id="closeModalBtn"
+              aria-label="fermer la modal"
+            >
+              <img src="assets/icons/close.svg" alt="" />
+            </button>
+          </header>
+          <form>
+            <div>
+              <label for="firstname">Prénom</label>
+              <input id="firstname" type="text" minlength="2" />
+            </div>
+            <div>
+              <label for="lastname">Nom</label>
+              <input id="lastname" type="text" minlength="2" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="email" minlength="2" />
+            </div>
+            <div>
+              <label for="message">Votre message</label>
+              <textarea id="message" rows="8" minlength="2"></textarea>
+            </div>
+            <button class="contact_button">Envoyer</button>
+          </form>
+        </div>
       </div>
     </dialog>
     <script src="/scripts/templates/class/Lightbox.js"></script>
@@ -113,5 +121,6 @@
     <script src="/scripts/templates/photographerPage.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/dropdownMenu.js"></script>
   </body>
 </html>

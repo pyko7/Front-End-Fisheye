@@ -2,6 +2,7 @@ dialog {
   width: 100%;
   min-height: 100vh;
   border: none;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
 .photograph-header {
@@ -95,29 +96,50 @@ dialog {
   cursor: pointer;
 }
 
+.modal-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal {
-  border-radius: 5px;
-  background-color: #db8876;
   width: 50%;
+  max-width: 500px;
+  max-height: 80%;
+  padding: 35px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 30px;
   justify-content: space-between;
-  padding: 35px;
-  margin: auto;
+  border-radius: 5px;
+  background-color: #db8876;
 }
 
 .modal header {
-  justify-content: space-between;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
+.modal header .header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.modal header .header-text h2 {
+  margin: 0;
+}
 .modal header img {
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 }
 
 .modal header h2 {
-  font-size: 64px;
+  font-size: 44px;
   font-weight: normal;
   text-align: center;
 }
@@ -132,24 +154,23 @@ form {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  gap: 20px;
 }
 
 form label {
   color: #312e2e;
-  font-size: 36px;
+  font-size: 24px;
 }
 
 form div {
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: self-start;
-  margin-bottom: 26px;
 }
 
 form input {
   width: 100%;
-  height: 68px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
 }
