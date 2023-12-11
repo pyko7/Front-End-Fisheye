@@ -47,6 +47,7 @@ form.addEventListener("submit", (e) => {
     email: email.value,
   };
   console.log(formResult);
+  form.reset();
   modal.close();
 });
 

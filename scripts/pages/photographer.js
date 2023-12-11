@@ -109,7 +109,9 @@ function getMediasCard(photographer, medias) {
   return medias.map((media) => {
     // eslint-disable-next-line no-undef
     const newMedia = new MediaFactory(media, photographer);
-    instanciatedMedia.push(newMedia);
+    if (instanciatedMedia.length < medias.length) {
+      instanciatedMedia.push(newMedia);
+    }
     return newMedia.createCard();
   });
 }
@@ -196,8 +198,4 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-if (!photographerId) {
-  window.location.href = "/";
-} else {
-  displayDataByPhotographer(photographerId);
-}
+displayDataByPhotographer(photographerId);
