@@ -1,7 +1,9 @@
+/* eslint-disable no-undef */
 /**
  * create photographer's card
  * @param {Object} data
  */
+// eslint-disable-next-line no-unused-vars
 function photographerTemplate(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
 
@@ -19,14 +21,16 @@ function photographerTemplate(data) {
       tagline,
       price,
       totalLikes,
+      // eslint-disable-next-line no-undef
     } = createCardElement();
+    // eslint-disable-next-line no-undef
     const likesNumber = await calculateLikes(photographerId);
 
     h2.textContent = data.name;
     h3.textContent = `${data.city}, ${data.country}`;
     tagline.textContent = data.tagline;
     price.textContent = `${data.price}€/jour`;
-    totalLikes.innerHTML = `<span id="total-likes-number">${likesNumber}</span> <i aria-hidden="true" class="fa-solid fa-heart"></i>`;
+    totalLikes.innerHTML = `<span id="total-likes-number">${likesNumber}</span> <span aria-hidden="true" class="fa-solid fa-heart"></span>`;
 
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);

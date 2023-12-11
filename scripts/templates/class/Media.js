@@ -1,6 +1,7 @@
 /**
  * @description class representing a media
  */
+// eslint-disable-next-line no-unused-vars
 class Media {
   /**
    * @description create a media
@@ -41,6 +42,7 @@ class Media {
       if (e.target.tagName === "I" || e.target.tagName === "BUTTON") {
         return;
       }
+      // eslint-disable-next-line no-undef
       Lightbox.openLightbox(this.title);
     });
     container.addEventListener("keydown", (e) => {
@@ -48,6 +50,7 @@ class Media {
         return;
       }
       if (e.key === "Enter") {
+        // eslint-disable-next-line no-undef
         Lightbox.openLightbox(this.title);
       }
     });

@@ -77,7 +77,9 @@ function selectItem(itemName) {
   if (selectedOption) {
     const optionText = selectedOption.textContent;
     dropdownTrigger.textContent = optionText;
+    // eslint-disable-next-line no-undef
     medias = sortMedia(itemName, medias);
+    // eslint-disable-next-line no-undef
     displayMediaByPhotographer(medias);
     closeDropdown();
     dropdownTrigger.focus();

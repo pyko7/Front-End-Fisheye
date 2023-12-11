@@ -1,6 +1,7 @@
 /**
  * @description class representing a lightbox
  */
+// eslint-disable-next-line no-unused-vars
 class Lightbox {
   /**
    * @description create a lightbox

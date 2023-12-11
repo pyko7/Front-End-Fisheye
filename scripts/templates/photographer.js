@@ -22,6 +22,7 @@ function createCardElement() {
  * @param {Object} data
  * @returns {HTMLElement}
  */
+// eslint-disable-next-line no-unused-vars
 function photographerTemplate(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
 

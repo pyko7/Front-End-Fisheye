@@ -1,8 +1,10 @@
 //DOM Elements
+// eslint-disable-next-line no-unused-vars
 const photographersSection = document.querySelector(".photograph-header");
+// eslint-disable-next-line no-unused-vars
 const contactButton = document.querySelector(".contact_button");
+// eslint-disable-next-line no-unused-vars
 const main = document.querySelector("#main");
-const listbox = document.querySelector("#listbox");
 const mediaContainer = document.querySelector("#media-container");
 const closeLightboxBtn = document.querySelector("#close-lightbox-button");
 const nextMediaButton = document.querySelector("#nav-to-right-lightbox");
@@ -16,9 +18,6 @@ let photographersAndMedias = null;
 let photographer = null;
 let medias = null;
 let displayedMedias = null;
-let listboxVisible = false;
-let selectedItem = null;
-let likedMedias = [];
 let lightbox;
 let instanciatedMedia = [];
 
@@ -62,6 +61,7 @@ async function getMediasByPhotographer(id) {
  * @param {number} id
  * @returns {Promise<Array>}
  */
+// eslint-disable-next-line no-unused-vars
 async function calculateLikes(id) {
   if (!medias) {
     medias = await getMediasByPhotographer(id);
@@ -73,6 +73,7 @@ async function calculateLikes(id) {
  * @description Create card elements
  * @returns {Object}
  */
+// eslint-disable-next-line no-unused-vars
 function createCardElement() {
   const photographerInformations = document.createElement("div");
   const photographerMoreInformations = document.createElement("div");
@@ -106,6 +107,7 @@ function createCardElement() {
  */
 function getMediasCard(photographer, medias) {
   return medias.map((media) => {
+    // eslint-disable-next-line no-undef
     const newMedia = new MediaFactory(media, photographer);
     instanciatedMedia.push(newMedia);
     return newMedia.createCard();
@@ -118,6 +120,7 @@ function getMediasCard(photographer, medias) {
  * @param {Array} medias array of medias
  * @returns {Array} array of sorted medias
  */
+// eslint-disable-next-line no-unused-vars
 function sortMedia(type, medias) {
   if (type === "date") {
     return medias.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -140,6 +143,7 @@ async function displayDataByPhotographer(id) {
     medias = await getMediasByPhotographer(id);
   }
 
+  // eslint-disable-next-line no-undef
   const photographerModel = photographerTemplate(photographer);
   await photographerModel.getUserCardDOM();
 
@@ -155,9 +159,11 @@ async function displayDataByPhotographer(id) {
  * @param {Array} medias array of medias
  */
 async function displayMediaByPhotographer(medias) {
+  // eslint-disable-next-line no-undef
   lightbox = new Lightbox(instanciatedMedia);
 
   if (!photographer) {
+    // eslint-disable-next-line no-undef
     photographer = await getPhotographersById(id);
   }
 
@@ -173,6 +179,7 @@ previousMediaButton.addEventListener("click", () =>
   lightbox.setPreviousMedia()
 );
 closeLightboxBtn.addEventListener("click", () => {
+  // eslint-disable-next-line no-undef
   Lightbox.closeLightbox();
 });
 window.addEventListener("keydown", (e) => {
@@ -182,6 +189,7 @@ window.addEventListener("keydown", (e) => {
     lightbox.setPreviousMedia();
   } else if (e.key === "Escape") {
     e.preventDefault();
+    // eslint-disable-next-line no-undef
     Lightbox.closeLightbox();
   } else {
     return;

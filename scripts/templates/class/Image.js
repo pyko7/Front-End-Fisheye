@@ -2,7 +2,8 @@
  * @description class representing an image
  * @extends Media
  */
-class Image extends Media {
+// eslint-disable-next-line no-unused-vars, no-undef
+class ImageMedia extends Media {
   /**
    * @description create an image
    * @param {Object} data data of image

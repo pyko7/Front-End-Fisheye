@@ -2,6 +2,7 @@
  * @description class representing a video
  * @extends Media
  */
+// eslint-disable-next-line no-unused-vars, no-undef
 class Video extends Media {
   /**
    * @description create a video

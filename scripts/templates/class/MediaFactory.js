@@ -2,6 +2,7 @@
  * @description class representing a media factory
  * @extends Media
  */
+// eslint-disable-next-line no-unused-vars
 class MediaFactory {
   /**
    * @description create a video or an image
@@ -10,8 +11,10 @@ class MediaFactory {
    */
   constructor(data, photographer) {
     if ("image" in data) {
-      return new Image(data, photographer);
+      // eslint-disable-next-line no-undef
+      return new ImageMedia(data, photographer);
     } else {
+      // eslint-disable-next-line no-undef
       return new Video(data, photographer);
     }
   }

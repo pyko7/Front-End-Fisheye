@@ -3,7 +3,6 @@ const form = document.querySelector("form");
 const firstname = document.querySelector("#firstname");
 const lastname = document.querySelector("#lastname");
 const email = document.querySelector("#email");
-const textarea = document.querySelector("textarea");
 const closeModalBtn = document.querySelector("#closeModalBtn");
 const photographerName = document.querySelector("#photographerName");
 
@@ -32,8 +31,10 @@ function trapFocus(event) {
 
 modal.addEventListener("keydown", trapFocus);
 
+// eslint-disable-next-line no-undef
 contactButton.addEventListener("click", () => {
   modal.showModal();
+  // eslint-disable-next-line no-undef
   photographerName.innerHTML = photographer.name;
   firstname.focus();
 });
