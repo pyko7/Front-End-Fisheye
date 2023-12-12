@@ -6,9 +6,6 @@ const contactButton = document.querySelector(".contact_button");
 // eslint-disable-next-line no-unused-vars
 const main = document.querySelector("#main");
 const mediaContainer = document.querySelector("#media-container");
-const closeLightboxBtn = document.querySelector("#close-lightbox-button");
-const nextMediaButton = document.querySelector("#nav-to-right-lightbox");
-const previousMediaButton = document.querySelector("#nav-to-left-lightbox");
 
 //URL params
 const param = new URL(document.location).searchParams.get("id");
@@ -18,6 +15,7 @@ let photographersAndMedias = null;
 let photographer = null;
 let medias = null;
 let displayedMedias = null;
+// eslint-disable-next-line no-unused-vars
 let lightbox;
 let instanciatedMedia = [];
 
@@ -175,27 +173,5 @@ async function displayMediaByPhotographer(medias) {
     mediaContainer.appendChild(media);
   });
 }
-
-nextMediaButton.addEventListener("click", () => lightbox.setNextMedia());
-previousMediaButton.addEventListener("click", () =>
-  lightbox.setPreviousMedia()
-);
-closeLightboxBtn.addEventListener("click", () => {
-  // eslint-disable-next-line no-undef
-  Lightbox.closeLightbox();
-});
-window.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") {
-    lightbox.setNextMedia();
-  } else if (e.key === "ArrowLeft") {
-    lightbox.setPreviousMedia();
-  } else if (e.key === "Escape") {
-    e.preventDefault();
-    // eslint-disable-next-line no-undef
-    Lightbox.closeLightbox();
-  } else {
-    return;
-  }
-});
 
 displayDataByPhotographer(photographerId);

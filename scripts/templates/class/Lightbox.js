@@ -14,10 +14,85 @@ class Lightbox {
   static medias;
 
   /**
+   * @description set up focus trap for the lightbox
+   */
+  static trapFocus(element) {
+    let focusableElements = element.querySelectorAll("button, img, video");
+    const nextMediaButton = document.querySelector("#nav-to-right-lightbox");
+    const previousMediaButton = document.querySelector("#nav-to-left-lightbox");
+    const closeLightboxBtn = document.querySelector("#close-lightbox-button");
+
+    let firstElement = focusableElements[0];
+    let lastElement = focusableElements[focusableElements.length - 1];
+    firstElement.focus();
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        Lightbox.setNextMedia();
+        focusableElements = element.querySelectorAll("button, img, video");
+        firstElement = focusableElements[0];
+        lastElement = focusableElements[focusableElements.length - 1];
+        firstElement.focus();
+      } else if (e.key === "ArrowLeft") {
+        Lightbox.setPreviousMedia();
+        focusableElements = element.querySelectorAll("button, img, video");
+        firstElement = focusableElements[0];
+        lastElement = focusableElements[focusableElements.length - 1];
+        firstElement.focus();
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        Lightbox.closeLightbox();
+      }
+    });
+
+    element.addEventListener("keydown", (e) => {
+      if (e.key === "Tab") {
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    });
+
+    nextMediaButton.addEventListener("click", () => {
+      Lightbox.setNextMedia();
+      focusableElements = element.querySelectorAll("button, img, video");
+      firstElement = focusableElements[0];
+      lastElement = focusableElements[focusableElements.length - 1];
+      firstElement.focus();
+    });
+    previousMediaButton.addEventListener("click", () => {
+      Lightbox.setPreviousMedia();
+      focusableElements = element.querySelectorAll("button, img, video");
+      firstElement = focusableElements[0];
+      lastElement = focusableElements[focusableElements.length - 1];
+      firstElement.focus();
+    });
+    closeLightboxBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        // eslint-disable-next-line no-undef
+        Lightbox.closeLightbox();
+      }
+    });
+    closeLightboxBtn.addEventListener("click", () => {
+      // eslint-disable-next-line no-undef
+      Lightbox.closeLightbox();
+    });
+  }
+
+  /**
    * @description open the lightbox
    * @param {string} title
    */
   static openLightbox(title) {
+    const lightboxElement = document.querySelector("#lightbox-container");
     const currentMedia = Lightbox.medias.find((media) => {
       if (media.title === title) {
         return media;
@@ -32,6 +107,7 @@ class Lightbox {
     if (cardMedia.firstChild.tagName === "VIDEO") {
       cardMedia.firstChild.setAttribute("autoplay", true);
     }
+    Lightbox.trapFocus(lightboxElement);
   }
 
   /**
@@ -46,7 +122,7 @@ class Lightbox {
   /**
    * @description display the next media in lightbox
    */
-  setNextMedia() {
+  static setNextMedia() {
     const lightbox = document.querySelector("#lightbox");
 
     Lightbox.currentIndex =
@@ -61,7 +137,7 @@ class Lightbox {
   /**
    * @description display the previous media in lightbox
    */
-  setPreviousMedia() {
+  static setPreviousMedia() {
     const lightbox = document.querySelector("#lightbox");
 
     Lightbox.currentIndex =
